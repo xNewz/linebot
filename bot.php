@@ -10,7 +10,7 @@ $events = json_decode($content, true);
 // Validate parsed JSON data
 if (!is_null($events['ESP'])) {
 	
-	send_LINE($events['ESP']);
+	send_LINE($events['ESP'],$events['replyToken']);
 		
 	echo "OK";
 	}
@@ -32,9 +32,9 @@ if (!is_null($events['events'])) {
 			      $splitMsg = explode(":", $text);
 			      $topic = $splitMsg[0];
 			      $msg = $splitMsg[1];
-			      getMqttfromlineMsg($msg);
+			      getMqttfromlineMsg($msg,$replyToken);
 			    }else{
-				getMqttfromlineMsg($text);
+				getMqttfromlineMsg($text,$replyToken);
 			    }
 			
 		}
