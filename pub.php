@@ -1,19 +1,20 @@
  <?php
- function pubMqtt($topic,$msg){
+  
+   function pubMqtt($topic,$msg){
        
-      put("https://api.netpie.io/microgear/<your-APPid>/$topic?retain",$msg);
+      put("https://api.netpie.io/topic/jadetest/$topic?retain",$msg);
  
   }
-  function getMqttfromlineMsg($lineMsg){
+  function getMqttfromlineMsg($lineMsg,$replytoken){
  
     $pos = strpos($lineMsg, ":");
     if($pos){
       $splitMsg = explode(":", $lineMsg);
-      $topic = "NodeMCU1";
+      $topic = $splitMsg[0];
       $msg = $splitMsg[1];
       pubMqtt($topic,$msg);
     }else{
-      $topic = "NodeMCU1";
+      $topic = $replytoken;
       $msg = $lineMsg;
       pubMqtt($topic,$msg);
     }
@@ -24,7 +25,7 @@
       
     $ch = curl_init($url);
  
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);    
      
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
      
@@ -34,15 +35,14 @@
      
     curl_setopt($ch, CURLOPT_POSTFIELDS, $tmsg);
  
-    curl_setopt($ch, CURLOPT_USERPWD, "your-key:your-secret");
+    curl_setopt($ch, CURLOPT_USERPWD, "{jJhs4OCpicDIGTT}:{kWNwUoBoEZenL50J2h8Th8XGT}");
      
     $response = curl_exec($ch);
-    
-      curl_close($ch);
-
-      echo $response . "\r\n";
+     
+    curl_close ($ch);
+     
     return $response;
-
 }
- 
+  $masss = "1";
+ getMqttfromlineMsg($masss);
 ?>
