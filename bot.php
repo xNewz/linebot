@@ -27,18 +27,12 @@ if (!is_null($events['events'])) {
 
 			// Build message to reply back
 
-			 $pos = strpos($text, ":");
-			    if($pos){
-			      $splitMsg = explode(":", $text);
-			      $topic = $splitMsg[0];
-			      $msg = $splitMsg[1];
-			      getMqttfromlineMsg($msg,$replyToken);
-			    }else{
-				getMqttfromlineMsg($text,$replyToken);
-			    }
+			$Topic = "NodeMCU1" ;
+			getMqttfromlineMsg($Text,$Topic);
+			   
 			
 		}
 	}
 }
-echo "OK1";
+echo "OK2";
 ?>
