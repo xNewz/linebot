@@ -1,11 +1,13 @@
  <?php
-  
-   function pubMqtt($topic,$msg){
-       
-      put("https://api.netpie.io/topic/numpapicklinebot/$topic?retain",$msg);
+ function pubMqtt($topic,$msg){
+       $APPID= "numpapicklinebot/"; //enter your appid
+     $KEY = "mJ7K4MfteC7p0dW"; //enter your key
+    $SECRET = "pp4gzMhCvJIqlxc66hKEvk46m"; //enter your secret
+    $Topic = "$topic"; 
+      put("https://api.netpie.io/microgear/".$APPID.$Topic."?retain&auth=".$KEY.":".$SECRET,$msg);
  
   }
-  function getMqttfromlineMsg($lineMsg,$replytoken){
+ function getMqttfromlineMsg($Topic,$lineMsg){
  
     $pos = strpos($lineMsg, ":");
     if($pos){
@@ -14,7 +16,7 @@
       $msg = $splitMsg[1];
       pubMqtt($topic,$msg);
     }else{
-      $topic = "NodeMCU1";
+      $topic = $Topic;
       $msg = $lineMsg;
       pubMqtt($topic,$msg);
     }
@@ -25,7 +27,7 @@
       
     $ch = curl_init($url);
  
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);    
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
      
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
      
@@ -35,16 +37,15 @@
      
     curl_setopt($ch, CURLOPT_POSTFIELDS, $tmsg);
  
-    curl_setopt($ch, CURLOPT_USERPWD, "mJ7K4MfteC7p0dW:pp4gzMhCvJIqlxc66hKEvk46m");
+    //curl_setopt($ch, CURLOPT_USERPWD, "mJ7K4MfteC7p0dW:pp4gzMhCvJIqlxc66hKEvk46m");
      
     $response = curl_exec($ch);
-     
-    curl_close ($ch);
-     
+    
+      curl_close($ch);
+      echo $response . "\r\n";
     return $response;
 }
- $lineMsg = "CHECK" ;
-$replytoken = "" ;
-getMqttfromlineMsg($lineMsg,$replytoken);
+ $Topic = "NodeMCU1";
+ $lineMsg = "CHECK";
+ getMqttfromlineMsg($Topic,$lineMsg);
 ?>
-
