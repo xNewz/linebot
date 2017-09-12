@@ -35,7 +35,7 @@
      
     curl_setopt($ch, CURLOPT_POSTFIELDS, $tmsg);
  
-    curl_setopt($ch, CURLOPT_USERPWD, "{mJ7K4MfteC7p0dW}:{pp4gzMhCvJIqlxc66hKEvk46m}");
+    curl_setopt($ch, CURLOPT_USERPWD, "mJ7K4MfteC7p0dW:pp4gzMhCvJIqlxc66hKEvk46m");
      
     $response = curl_exec($ch);
      
@@ -43,9 +43,8 @@
      
     return $response;
 }
-  $masss = "1";
- getMqttfromlineMsg($masss);
-?>
-$lineMsg = "CHECK" ;
+ $lineMsg = "CHECK" ;
 $replytoken = "" ;
 getMqttfromlineMsg($lineMsg,$replytoken);
+?>
+
