@@ -14,7 +14,7 @@
       $msg = $splitMsg[1];
       pubMqtt($topic,$msg);
     }else{
-      $topic = $replytoken;
+      $topic = "NodeMCU1";
       $msg = $lineMsg;
       pubMqtt($topic,$msg);
     }
