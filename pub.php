@@ -46,3 +46,6 @@
   $masss = "1";
  getMqttfromlineMsg($masss);
 ?>
+$lineMsg = "CHECK" ;
+$replytoken = "" ;
+getMqttfromlineMsg($lineMsg,$replytoken);
