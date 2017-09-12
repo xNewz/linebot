@@ -31,6 +31,5 @@ function send_LINE($msg){
 
       echo $result . "\r\n"; 
 }
-$msg = "TEST";
-send_LINE($msg);
+
 ?>
